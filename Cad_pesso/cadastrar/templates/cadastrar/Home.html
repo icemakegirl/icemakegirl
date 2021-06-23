@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+    <head>
+       <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Jekyll v4.1.1">
+         <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+        <style>
+        body {
+            background-color:  #171717;
+            font-family: 'Roboto', sans-serif;
+            text-align: left;
+            margin:0 auto  ;
+            font-family: 'Roboto', sans-serif;
+           
+        }
+.footer {
+        position:absolute;
+        color: #00ffd5;
+        bottom:0;
+        width:100%;
+        padding: 6px 10px;
+        }
+.tabela{
+          width: 80%;
+          color: #46f2ca;
+          margin-bottom : .5em;
+          table-layout: fixed;
+          text-align: center;
+          position:absolute;
+          top: 250px;
+          right: 200px;
+}
+.form1{
+        position:fixed;
+        color: #00CED1;
+        width:20%;
+        height:5%;
+        padding: 6px 10px;
+        top: 215px;
+        right: 300px;
+            }
+.form2{
+        position:fixed;
+        color: #00CED1;
+        width:20%;
+        height:5%;
+        padding: 6px 10px;
+        top: 215px;
+        right: 500px;
+            }
+
+.titulo{
+                color:#46f2ca;
+                text-align: center;
+                position:absolute;
+                top: 90px;
+                left:500px;
+            }
+.editar{
+            margin: 10px;
+            padding: 6px 10px;
+            width: 20%;
+            height:15%;
+            border: 1px solid #00CED1;
+            border-radius: 30px;
+            color:#00CED1;
+            background-color: transparent;
+            }
+.excluir{
+    color: #00CED1;
+             cursor: pointer;
+             margin: 10px;
+             padding: 6px 10px;
+            width: 22%;
+            height:10%;
+            border: 1px solid #00CED1;
+          border-radius: 30px;
+          color:#00CED1;
+          background-color: transparent;
+            }
+.botao1 {
+             color: #00CED1;
+             cursor: pointer;
+             margin: 10px;
+             padding: 6px 10px;
+            width: 10%;
+            height:8%;
+            border: 1px solid #00CED1;
+          border-radius: 30px;
+          color:#00CED1;
+          background-color: transparent;
+          position:absolute;
+          top: 10px;
+          left: 150px;
+        }
+.botao2 {
+             color: #00CED1;
+             cursor: pointer;
+             margin: 10px;
+             padding: 6px 10px;
+             width: 10%;
+             height:8%;
+             border: 1px solid #00CED1;
+             border-radius: 30px;
+             color:#00CED1;
+             background-color: transparent;
+             position:fixed;
+             top: 10px;
+             left:0px ;
+        }
+        .cambio {
+             color: #00CED1;
+             margin: 10px;
+             padding: 6px 10px;
+            width: 10%;
+            height:5%;
+            border: 1px solid #00CED1;
+          border-radius: 40px;
+          color:#00CED1;
+          background-color: transparent;
+          position:fixed;
+          top: 500px;
+          right: 650px;
+        }
+        .media {
+             color: #00CED1;
+             margin: 10px;
+             padding: 3px 8px;
+             width: 5%;
+             height:5%;
+             border: 1px solid #00CED1;
+             border-radius: 40px;
+             color:#00CED1;
+             background-color: transparent;
+             position:fixed;
+             top:200px;
+             right: 200px;
+        }
+            .Total {
+             color: #00CED1;
+             margin: 10px;
+             padding: 6px 10px;
+            width: 5%;
+            height:5%;
+            border: 1px solid #00CED1;
+          border-radius: 40px;
+          color:#00CED1;
+          background-color: transparent;
+          position:fixed;
+          top: 200px;
+          right: 300px;
+        }
+        </style>
+    </head>
+    
+   
+	<body>
+		<h1 class='titulo'>
+            <b>Pessoas Cadastradas</b>
+        </h1>
+		<table class='tabela'frame="hsides">
+                <tbody>
+        <ul>
+            
+             <thead>
+                 
+    <tr>
+      <th>ID</th>
+      <th>Nome</th>
+      <th>Data de Nascimento</th>
+      <th>Quantidade</th>
+    </tr>
+  </thead>
+            
+            {% for inicial in home %}
+               <tr>
+                   <td>{{inicial.id}} </td>
+                   <td>{{inicial.nome}} </td>
+                   <td> {{inicial.data | date:"d/m/Y"}} </td>
+                   <td>US$ {{inicial.quantia}} <a href = "/cadastrar/update/{{inicial.id}}"><button class='editar'>Editar</button></a>|<a href ="/cadastrar/deletar/{{inicial.id}}/"><button class='excluir'>Excluir</button></a></td>
+                </tr>
+           
+                {% endfor %}
+           
+            
+           
+        </ul>
+        </tbody>
+            </table>
+        <form  class='footer' method="POST" enctype='multipart/form-data'>
+            {% csrf_token %}
+            
+            {{form.quantia.label}}:{{form.quantia}}- 
+            {{form.id.label}}:{{form.id}} <br><br>
+            {%if retorne %}
+                R$ {{retorne}}
+            {%endif%} 
+            
+            <input class="cambio" type="submit" value ="Calcular Cambio">    
+        </form>
+        <form class="form1" method="POST" enctype='multipart/form-data'>
+            {% csrf_token %}
+            <!--{{form1.media}}-->
+            {%if media %}
+             Media: US$  {{media}}
+            {%endif%}
+        
+        <input class="media" type="submit" name="media" value="media">
+        </form>
+        <form class="form2" method="POST" enctype='multipart/form-data'>
+            {% csrf_token %}
+            {%if total %}
+               Total: US${{total}}
+            {%endif%}
+        <input class="Total" type="submit" name="total" value="total">
+        </form>
+        
+        
+       <a  href="/cadastrar/cadastro_pessoas/"><button class = 'botao1'>Cadastrar Pessoa</button></a>
+        <a href="/cadastrar/exibe_grafico/"><button class = 'botao2'>Exibe grafico</button></a>     
+	</body>
+<html>

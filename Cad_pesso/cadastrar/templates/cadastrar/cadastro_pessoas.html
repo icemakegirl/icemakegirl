@@ -1,0 +1,168 @@
+<html>
+   <head>
+        <style>
+        body {
+            background-color:  #171717;
+            font-family: 'Roboto', sans-serif;
+            text-align: left;
+            margin:0 auto  ;
+            font-family: 'Roboto', sans-serif;
+           
+        }
+            .p1{
+                text-align:center;
+            }
+.footer {
+        position:absolute;
+        color: #46f2ca;
+        bottom:0;
+        width:50%;
+        padding: 6px 10px;
+        text-align: center;
+        }
+.tabela{
+          width: 70%;
+          color: #46f2ca;
+          margin-bottom : .5em;
+          table-layout: fixed;
+          text-align: center;
+          position:absolute;
+          top: 250px;
+          right: 300px;
+}
+.titulo{
+                color:#46f2ca;
+                text-align: center;
+                position:absolute;
+                top: 90px;
+                left:500px;
+            }
+.botao1 {
+             color: #00CED1;
+             cursor: pointer;
+             margin: 10px;
+             padding: 6px 10px;
+            width: 10%;
+            height:8%;
+            border: 1px solid #00CED1;
+          border-radius: 30px;
+          color:#00CED1;
+          background-color: transparent;
+          position:absolute;
+          top: 10px;
+          left: 150px;
+        }
+.botao2 {
+             color: #00CED1;
+             cursor: pointer;
+             margin: 10px;
+             padding: 6px 10px;
+             width: 10%;
+             height:8%;
+             border: 1px solid #00CED1;
+             border-radius: 30px;
+             color:#00CED1;
+             background-color: transparent;
+             position:fixed;
+             top: 10px;
+             left:0px ;
+        }
+        .cambio {
+             color: #00CED1;
+             margin: 10px;
+             padding: 6px 10px;
+            width: 10%;
+            height:5%;
+            border: 1px solid #00CED1;
+          border-radius: 40px;
+          color:#00CED1;
+          background-color: transparent;
+          position:fixed;
+          top: 500px;
+          right: 650px;
+        }
+            
+        .media {
+             color: #00CED1;
+             margin: 10px;
+             padding: 3px 8px;
+            width: 5%;
+            height:5%;
+            border: 1px solid #00CED1;
+          border-radius: 40px;
+          color:#00CED1;
+          background-color: transparent;
+          position:fixed;
+          top:170px;
+          right: 200px;
+        }
+            .Total {
+             color: #00CED1;
+             margin: 10px;
+             padding: 6px 10px;
+            width: 5%;
+            height:5%;
+            border: 1px solid #00CED1;
+          border-radius: 40px;
+          color:#00CED1;
+          background-color: transparent;
+          position:fixed;
+          top: 170px;
+          right: 300px;
+        }
+        .salvar {
+             color: #00CED1;
+             margin: 10px;
+             padding: 3px 8px;
+            width: 5%;
+            height:5%;
+            border: 1px solid #00CED1;
+          border-radius: 40px;
+          color:#00CED1;
+          background-color: transparent;
+          position:fixed;
+          top:300px;
+          right: 450px;
+        }
+        </style>
+    </head>
+	<body>
+		<h1 class='titulo'>
+         <b>cadastro</b> 
+        </h1>
+		<br><br>
+		<form  class ='tabela' method="POST" enctype='multipart/form-data'>
+            <div class='formulario'>
+                {% csrf_token %}
+            {{form.nome.label}}:{{form.nome}}<br><br>
+            {{form.quantia.label}}:{{form.quantia}} <br><br>
+            {{form.data.label}}:{{form.data}}
+            </div>
+            
+            
+            <input class="salvar" type="submit" value ="Salvar">
+        </form>
+        <table class='footer' frame="hsides">
+            
+            <tbody>
+            <li>
+            <thead>
+                
+    <tr>
+      <th>ID</th>
+      <th>Nome</th>
+      <th>Data de Nascimento</th>
+      <th>Quantidade</th>
+    </tr>
+  </thead>
+                <tr> <td> {{home.id}}</td> <td>{{home.nome}}</td> <td>{{home.data  | date:"d/m/Y"}} </td><td>{{home.quantia}}  </td>
+                </tr>
+               
+            </li>
+            </tbody>
+        </table>
+        
+        <a href="/cadastrar/Home/"><button class='botao1'>Home</button></a>
+        <a href="/cadastrar/exibe_grafico/"><button class='botao2'>Exibe grafico</button></a>
+	</body>
+<html>
